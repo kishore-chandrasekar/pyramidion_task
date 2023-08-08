@@ -1,0 +1,1 @@
+export const ADD_JSON_DATA = 'ADD_JSON_DATA';
