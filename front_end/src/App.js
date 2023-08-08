@@ -23,20 +23,12 @@ function App() {
   const [movieList, setMovieList] = useState()
 
   const movieInfo = async (e) => {
-    console.log(e)
-    console.log('ji')
-    // if(jsonDataArray.length<0){
-
-    // }
     var check = jsonDataArray?.filter((ele) => ele._id == e)
-    console.log("test,", check)
     if (check.length == 0) {
       try {
-        var data = await axios.get(`http://localhost:3000/movieData/${e}`)
-        console.log(data.data)
+        var data = await axios.get(`http://localhost:8000/movieData/${e}`)
         dispatch(addJsonData(data.data));
         setCurrentMovie(data.data)
-        console.log(jsonDataArray)
       } catch (error) {
         console.log(error)
       }
@@ -49,8 +41,7 @@ function App() {
   }
   const movieListRender = async () => {
     try {
-      let data = await axios.get('http://localhost:3000/moviesList/')
-      console.log(data.data)
+      let data = await axios.get('http://localhost:8000/moviesList/')
       setMovieList(data.data)
 
     } catch (error) {
@@ -60,13 +51,7 @@ function App() {
   useEffect(() => {
     movieListRender()
   }, [])
-  useEffect(() => {
-    console.log('oooooooo', jsonDataArray)
-  }, [jsonDataArray])
 
-  useEffect(() => {
-    console.log('oooooooo', currentMovie)
-  }, [currentMovie])
 
   return (
     <div className="App">
